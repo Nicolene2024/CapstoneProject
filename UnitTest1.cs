@@ -13,7 +13,7 @@ namespace Capstone_Project
 {
     public class Tests
     {
-        public ISikuliSession Session;
+        ISikuliSession session;
 
         [SetUp]
         public void Setup()
@@ -25,6 +25,7 @@ namespace Capstone_Project
         {
             //Chrome browser is displayed & Home page is displayed
             //Open chrome browser and navigate to "https://demowebshop.tricentis.com"
+            session = Sikuli.CreateSession();
             IWebDriver driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://demowebshop.tricentis.com");
@@ -64,9 +65,9 @@ namespace Capstone_Project
             driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]/option[2]")).Click();
 
             //Add product to the cart
-            //string path = @"C:\Users\NICOLEER\Documents\Capstone\Images\Create_Your_Own_Jewelry.png";
-            //IPattern pattern = Patterns.FromFile(path);
-            //Session.Click(pattern); 
+            string path = @"C:\Users\NICOLEER\Documents\Capstone\Images\Create_Your_Own_Jewelry.png";
+            IPattern pattern = Patterns.FromFile(path);
+            session.Click(pattern); 
         }
     }
 } 
