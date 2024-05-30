@@ -55,7 +55,6 @@ namespace Capstone_Project
             WebJewelry.CreateYourOwnJewelry(driver, session, key);            
         }
 
-
         [Test]
         public void Checkout()
         {

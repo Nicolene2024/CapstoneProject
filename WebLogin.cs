@@ -33,6 +33,5 @@ namespace Capstone_Project
             Assert.True(EmailAddressAttribute.Contains("nicoleer@pepkorit.com"));
 
         }
-
     }
 }

@@ -3,6 +3,8 @@ using SikuliSharp;
 using WindowsInput.Native;
 using WindowsInput;
 using OpenQA.Selenium.Support.UI;
+using AventStack.ExtentReports.Gherkin.Model;
+using System.Reactive.Joins;
 
 
 namespace Capstone_Project
@@ -20,7 +22,6 @@ namespace Capstone_Project
             urlList.Add("https://demowebshop.tricentis.com/jewelry");
             bool isContains = urlList.Any(x => x.Contains("Jewelry"));
         }
-
         public static void ChangeDisplayView(IWebDriver driver) 
         {
             //Select the Jewelry option under the Categories section
@@ -33,12 +34,6 @@ namespace Capstone_Project
             bool isContains = urlList.Any(x => x.Contains("Jewelry"));
 
             //Select the List option under the View as dropdown
-            //Products will be displayed underneath each other
-            driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]")).Click();
-            Thread.Sleep(500);
-            driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]/option[2]")).Click();
-
-            //Select the List option under the View as dropdown
             driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]")).Click();
             Thread.Sleep(500);
 
@@ -47,7 +42,7 @@ namespace Capstone_Project
         }
         public static void CreateYourOwnJewelry(IWebDriver driver, ISikuliSession session, WindowsInput.Native. VirtualKeyCode Key) 
         {
-            // Click on the product Labled Create Your Own Jewelry image
+            //Click on the product Labled Create Your Own Jewelry image
             //Add product to the cart
 
             string path0 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Create_Your_Own_Jewelry.png";
@@ -61,7 +56,7 @@ namespace Capstone_Project
             session.Click(pattern1);
 
             //Gold (1mm)
-            string path2 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Gold (1mm).png";
+            string path2 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Gold_(1mm).png";
             IPattern pattern2 = Patterns.FromFile(path2);
             session.Click(pattern2);
 
@@ -70,23 +65,22 @@ namespace Capstone_Project
             sim.Keyboard.KeyPress(Key);
 
             //Enter 30 into the Length in cm source field 
-            string path3 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Length.png";
+            string path3 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Length_30cm.png";
             IPattern pattern3 = Patterns.FromFile(path3);
             session.Click(pattern3);
             session.Type("30");
-            sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-
+            
             //Select the Heart radio button option under Pendant
-            string path4 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Heart.png";          
+            string path4 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Heart.png";     
             IPattern pattern4 = Patterns.FromFile(path4);
             session.Click(pattern4);
 
             //Increase Quantity to 2 
-            string path5 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Quantity.png";
+            string path5 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Quantity_2.png";
             IPattern pattern5 = Patterns.FromFile(path5);
             session.Click(pattern5);
-            session.Type("2");
             sim.Keyboard.KeyPress(VirtualKeyCode.BACK);
+            session.Type("2");
 
             //Click on the Add to cart button
             string path6 = @"C:\Users\NICOLEER\Documents\Capstone\Images\Add_to_cart.png";
