@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using AventStack.ExtentReports.Model;
+using AventStack.ExtentReports;
+using OpenQA.Selenium;
 
 namespace Capstone_Project
 {
@@ -15,6 +17,7 @@ namespace Capstone_Project
             String DisplayNameAttribute = "Returning Customer";
             Assert.True(DisplayNameAttribute.Contains("Returning Customer"));
 
+            Console.WriteLine("Enter email adress");
             //Enter email adress
             driver.FindElement(By.Id("Email")).SendKeys("nicoleer@pepkorit.com");
             Thread.Sleep(300);
@@ -31,7 +34,20 @@ namespace Capstone_Project
 
             String EmailAddressAttribute = "nicoleer@pepkorit.com";
             Assert.True(EmailAddressAttribute.Contains("nicoleer@pepkorit.com"));
-
+        }
+        public static void TC_2_Login(IWebDriver driver, ExtentReports reports)
+        {
+            ExtentTest test = reports.CreateTest("TEST CASE: TC_2_Login");
+            try
+            {
+                WebLogin.Login(driver);
+                test.Pass("TEST CASE PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
         }
     }
 }

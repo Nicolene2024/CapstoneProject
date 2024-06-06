@@ -5,6 +5,9 @@ using OpenQA.Selenium.Chrome;
 using SikuliSharp;
 using WindowsInput.Native;
 using WindowsInput;
+using AventStack.ExtentReports.Model;
+using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports;
 
 namespace Capstone_Project
 {
@@ -13,6 +16,7 @@ namespace Capstone_Project
         ISikuliSession session;
         IWebDriver driver;
         VirtualKeyCode key;
+        ExtentReports reports;
 
 
         [OneTimeSetUp]
@@ -21,12 +25,16 @@ namespace Capstone_Project
             session = Sikuli.CreateSession();
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
+            reports = new ExtentReports();
+            var htmlReporter = new ExtentSparkReporter("C:\\Training\\CapstoneProject\\Report\\CapstoneProjectSpark.html");
+            reports.AttachReporter(htmlReporter);
         }
 
         [Test]
         public void OpenHomeWeb()
         {
             WebHome.OpenWebHome(driver);
+            WebHome.TC_1_Home(driver, reports);
         }
 
         [Test]
@@ -34,6 +42,7 @@ namespace Capstone_Project
         {
             WebHome.OpenWebHome(driver);
             WebLogin.Login(driver);
+            WebLogin.TC_2_Login(driver, reports);
         }
 
         [Test]
@@ -43,6 +52,8 @@ namespace Capstone_Project
             WebLogin.Login(driver);
             WebJewelry.SelectCategoryJewelry(driver);
             WebJewelry.ChangeDisplayView(driver);
+            WebJewelry.TC_3_SelectCategoryJewelry(driver, reports, session, key);
+            WebJewelry.TC_4_ChangeDisplayView(driver, reports, session, key);
         }
 
         [Test]
@@ -52,7 +63,8 @@ namespace Capstone_Project
             WebLogin.Login(driver);
             WebJewelry.SelectCategoryJewelry(driver);
             WebJewelry.ChangeDisplayView(driver);
-            WebJewelry.CreateYourOwnJewelry(driver, session, key);            
+            WebJewelry.CreateYourOwnJewelry(driver, session, key);
+            WebJewelry.TC_5_CreateYourOwnJewelry(driver, reports, session, key);
         }
 
         [Test]
@@ -64,6 +76,7 @@ namespace Capstone_Project
             WebJewelry.ChangeDisplayView(driver);
             WebJewelry.CreateYourOwnJewelry(driver, session, key);
             WebCart.AddtoCart(driver, session, key);
+            WebCart.TC_6_AddtoCart(driver, reports, session, key);
         }
 
         [Test]
@@ -76,6 +89,7 @@ namespace Capstone_Project
             WebJewelry.CreateYourOwnJewelry(driver, session, key);
             WebCart.AddtoCart(driver, session, key);
             WebCart.LogOut(driver);
+            WebCart.TC_7_LogOut(driver, reports, session, key);
 
         }
 
