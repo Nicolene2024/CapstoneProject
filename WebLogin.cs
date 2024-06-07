@@ -35,5 +35,7 @@ namespace Capstone_Project
             String EmailAddressAttribute = "nicoleer@pepkorit.com";
             Assert.True(EmailAddressAttribute.Contains("nicoleer@pepkorit.com"));
         }
+
     }
+
 }

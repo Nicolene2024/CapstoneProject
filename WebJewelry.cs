@@ -97,6 +97,8 @@ namespace Capstone_Project
             IPattern pattern6 = Patterns.FromFile(path6);
             session.Click(pattern6);
         }
+
     }
+
 }
 

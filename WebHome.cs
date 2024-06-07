@@ -15,6 +15,8 @@ namespace Capstone_Project
             String PageTitle = driver.Title;
             Assert.True(PageTitle.Contains("Demo Web Shop"));
         }
+
     }
+
 }
     

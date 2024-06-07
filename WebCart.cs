@@ -62,7 +62,9 @@ namespace Capstone_Project
             Thread.Sleep(1500);
             driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a")).Click();
         }
+
     }
+
 }
 
 
