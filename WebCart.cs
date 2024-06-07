@@ -19,29 +19,29 @@ namespace Capstone_Project
             driver.FindElement(By.XPath("//*[@id=\"topcartlink\"]/a/span[1]")).Click();
 
             //Click on the Country dropdown 
-            string path7 = @"C:\Training\CapstoneProject\Capstone\Images\Country.png";
+            string path7 = @"C:\Training\CapstoneProject\Images\Country.png";
             IPattern pattern7 = Patterns.FromFile(path7);
             session.Click(pattern7);
 
             //Select American Samoa as the downdrop option
-            string path8 = @"C:\Training\CapstoneProject\Capstone\Images\American_Samoa.png";
+            string path8 = @"C:\Training\CapstoneProject\Images\American_Samoa.png";
             IPattern pattern8 = Patterns.FromFile(path8);
             session.Click(pattern8);
 
             //Insert 96799 into the Zipcode source field
-            string path9 = @"C:\Training\CapstoneProject\Capstone\Images\Zip_Postal_Code.png";
+            string path9 = @"C:\Training\CapstoneProject\Images\Zip_Postal_Code.png";
             IPattern pattern9 = Patterns.FromFile(path9);
             session.Click(pattern9);
             Thread.Sleep(500);
             session.Type("96799");
 
             //Select the Agree to TC & C checkbox
-            string path10 = @"C:\Training\CapstoneProject\Capstone\Images\TC_&_C_Checkbox.png";
+            string path10 = @"C:\Training\CapstoneProject\Images\TC_&_C_Checkbox.png";
             IPattern pattern10 = Patterns.FromFile(path10);
             session.Click(pattern10);
 
             //Click on the Checkout button
-            string path11 = @"C:\Training\CapstoneProject\Capstone\Images\Checkout_Button.png";
+            string path11 = @"C:\Training\CapstoneProject\Images\Checkout_Button.png";
             IPattern pattern11 = Patterns.FromFile(path11);
             session.Click(pattern11);
 
@@ -53,48 +53,14 @@ namespace Capstone_Project
             String PageHeader = "Checkout";
             Assert.That(PageHeader.Contains("Checkout"));
         }
-        public static void TC_6_AddtoCart(IWebDriver driver, ExtentReports reports, ISikuliSession session, VirtualKeyCode key)
-        {
-            ExtentTest test = reports.CreateTest("TEST CASE: TC_6_AddtoCart");
-            try
-            {
-                WebCart.AddtoCart(driver, session, key);
-                test.Pass("TEST CASE PASSED");
-            }
-            catch (Exception ex)
-            {
-                test.Fail(ex.Message);
-                Assert.Fail(ex.Message);
-            }
-        }
-
-        private static void AddtoCart(IWebDriver driver, ISikuliSession session, object key)
-        {
-            throw new NotImplementedException();
-        }
-
         public static void LogOut(IWebDriver driver)
         {
             //Click on the Demo Work Shop Logo - Home page is displayed
             //Select on the Logout link in the page header - Home page with login option is displayed
             Thread.Sleep(1000);
             driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[1]/a/img")).Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             driver.FindElement(By.XPath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a")).Click();
-        }
-        public static void TC_7_LogOut(IWebDriver driver, ExtentReports reports, ISikuliSession session, VirtualKeyCode key)
-        {
-            ExtentTest test = reports.CreateTest("TEST CASE: TC_7_LogOut");
-            try
-            {
-                WebCart.LogOut(driver);
-                test.Pass("TEST CASE PASSED");
-            }
-            catch (Exception ex)
-            {
-                test.Fail(ex.Message);
-                Assert.Fail(ex.Message);
-            }
         }
     }
 }

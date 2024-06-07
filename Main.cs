@@ -16,7 +16,7 @@ namespace Capstone_Project
         ISikuliSession session;
         IWebDriver driver;
         VirtualKeyCode key;
-        ExtentReports reports;
+        static ExtentReports reports;
 
 
         [OneTimeSetUp]
@@ -33,73 +33,147 @@ namespace Capstone_Project
         [Test]
         public void OpenHomeWeb()
         {
-            WebHome.OpenWebHome(driver);
-            WebHome.TC_1_Home(driver, reports);
+            ExtentTest test = reports.CreateTest("TEST CASE: Open Web Home");
+            try
+            {
+                WebHome.OpenWebHome(driver);
+                test.Pass("OPEN WEB HOME: TEST CASE PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
         }
 
         [Test]
         public void Login()
         {
-            WebHome.OpenWebHome(driver);
-            WebLogin.Login(driver);
-            WebLogin.TC_2_Login(driver, reports);
+            ExtentTest test = reports.CreateTest("TEST CASE: Login");
+            try
+            {
+                WebHome.OpenWebHome(driver);
+                test.Pass("OPEN WEB HOME: TEST CASE 1 PASSED");
+                WebLogin.Login(driver);
+                test.Pass("LOGIN: TEST CASE 2 PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
         }
 
         [Test]
         public void SelectCategory()
         {
-            WebHome.OpenWebHome(driver);
-            WebLogin.Login(driver);
-            WebJewelry.SelectCategoryJewelry(driver);
-            WebJewelry.ChangeDisplayView(driver);
-            WebJewelry.TC_3_SelectCategoryJewelry(driver, reports, session, key);
-            WebJewelry.TC_4_ChangeDisplayView(driver, reports, session, key);
+            ExtentTest test = reports.CreateTest("TEST CASE: Select Category");
+            try
+            {
+                WebHome.OpenWebHome(driver);
+                test.Pass("OPEN WEB HOME: TEST CASE 1 PASSED");
+                WebLogin.Login(driver);
+                test.Pass("LOGIN: TEST CASE 2 PASSED");
+                WebJewelry.SelectCategoryJewelry(driver);
+                test.Pass("SELECT CATEGORY JEWELRY: TEST CASE 3 PASSED");
+                WebJewelry.ChangeDisplayView(driver);
+                test.Pass("CHANGE DISPLAY VIEW: TEST CASE 4 PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
         }
 
         [Test]
         public void AddProduct()
         {
-            WebHome.OpenWebHome(driver);
-            WebLogin.Login(driver);
-            WebJewelry.SelectCategoryJewelry(driver);
-            WebJewelry.ChangeDisplayView(driver);
-            WebJewelry.CreateYourOwnJewelry(driver, session, key);
-            WebJewelry.TC_5_CreateYourOwnJewelry(driver, reports, session, key);
-        }
+            ExtentTest test = reports.CreateTest("TEST CASE: Add Product");
+            try
+            {
+                WebHome.OpenWebHome(driver);
+                test.Pass("OPEN WEB HOME: TEST CASE 1 PASSED");
+                WebLogin.Login(driver);
+                test.Pass("LOGIN: TEST CASE 2 PASSED");
+                WebJewelry.SelectCategoryJewelry(driver);
+                test.Pass("SELECT CATEGORY JEWELRY: TEST CASE 3 PASSED");
+                WebJewelry.ChangeDisplayView(driver);
+                test.Pass("CHANGE DISPLAY VIEW: TEST CASE 4 PASSED");
+                WebJewelry.CreateYourOwnJewelry(driver, session, key);
+                test.Pass("CREATE YOUR OWN JEWELRY: TEST CASE 5 PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
+        } 
 
         [Test]
         public void Checkout()
         {
-            WebHome.OpenWebHome(driver);
-            WebLogin.Login(driver);
-            WebJewelry.SelectCategoryJewelry(driver);
-            WebJewelry.ChangeDisplayView(driver);
-            WebJewelry.CreateYourOwnJewelry(driver, session, key);
-            WebCart.AddtoCart(driver, session, key);
-            WebCart.TC_6_AddtoCart(driver, reports, session, key);
+            ExtentTest test = reports.CreateTest("TEST CASE: Checkout");
+            try
+            {
+                WebHome.OpenWebHome(driver);
+                test.Pass("OPEN WEB HOME: TEST CASE 1 PASSED");
+                WebLogin.Login(driver);
+                test.Pass("LOGIN: TEST CASE 2 PASSED");
+                WebJewelry.SelectCategoryJewelry(driver);
+                test.Pass("SELECT CATEGORY JEWELRY: TEST CASE 3 PASSED");
+                WebJewelry.ChangeDisplayView(driver);
+                test.Pass("CHANGE DISPLAY VIEW: TEST CASE 4 PASSED");
+                WebJewelry.CreateYourOwnJewelry(driver, session, key);
+                test.Pass("CREATE YOUR OWN JEWELRY: TEST CASE 5 PASSED");
+                WebCart.AddtoCart(driver, session, key);
+                test.Pass("ADD TO CART: TEST CASE 6 PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
         }
 
         [Test]
         public void ReturnToHomeWeb()
         {
-            WebHome.OpenWebHome(driver);
-            WebLogin.Login(driver);
-            WebJewelry.SelectCategoryJewelry(driver);
-            WebJewelry.ChangeDisplayView(driver);
-            WebJewelry.CreateYourOwnJewelry(driver, session, key);
-            WebCart.AddtoCart(driver, session, key);
-            WebCart.LogOut(driver);
-            WebCart.TC_7_LogOut(driver, reports, session, key);
-
+            ExtentTest test = reports.CreateTest("TEST CASE: Return To Home Web");
+            try
+            {
+                WebHome.OpenWebHome(driver);
+                test.Pass("OPEN WEB HOME: TEST CASE 1 PASSED");
+                WebLogin.Login(driver);
+                test.Pass("LOGIN: TEST CASE 2 PASSED");
+                WebJewelry.SelectCategoryJewelry(driver);
+                test.Pass("SELECT CATEGORY JEWELRY: TEST CASE 3 PASSED");
+                WebJewelry.ChangeDisplayView(driver);
+                test.Pass("CHANGE DISPLAY VIEW: TEST CASE 4 PASSED");
+                WebJewelry.CreateYourOwnJewelry(driver, session, key);
+                test.Pass("CREATE YOUR OWN JEWELRY: TEST CASE 5 PASSED");
+                WebCart.AddtoCart(driver, session, key);
+                test.Pass("ADD TO CART: TEST CASE 6 PASSED");
+                WebCart.LogOut(driver);
+                test.Pass("LOGOUT: TEST CASE 7 PASSED");
+            }
+            catch (Exception ex)
+            {
+                test.Fail(ex.Message);
+                Assert.Fail(ex.Message);
+            }
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             driver.Dispose();
+            reports.Flush();
+            reports = null;
         }
     }
 }
+    
 
         
         

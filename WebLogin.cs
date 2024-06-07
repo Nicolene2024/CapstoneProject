@@ -6,7 +6,7 @@ namespace Capstone_Project
 {
     internal class WebLogin
     {
-       public static void Login(IWebDriver driver)
+        public static void Login(IWebDriver driver)
         {
             //Login page is displayed
             //Click on Login link in the page header
@@ -20,11 +20,11 @@ namespace Capstone_Project
             Console.WriteLine("Enter email adress");
             //Enter email adress
             driver.FindElement(By.Id("Email")).SendKeys("nicoleer@pepkorit.com");
-            Thread.Sleep(300);
+            Thread.Sleep(700);
 
             //Enter password
             driver.FindElement(By.Id("Password")).SendKeys("password");
-            Thread.Sleep(500);
+            Thread.Sleep(700);
 
             //Home page is displayed
             //Click Login button
@@ -34,20 +34,6 @@ namespace Capstone_Project
 
             String EmailAddressAttribute = "nicoleer@pepkorit.com";
             Assert.True(EmailAddressAttribute.Contains("nicoleer@pepkorit.com"));
-        }
-        public static void TC_2_Login(IWebDriver driver, ExtentReports reports)
-        {
-            ExtentTest test = reports.CreateTest("TEST CASE: TC_2_Login");
-            try
-            {
-                WebLogin.Login(driver);
-                test.Pass("TEST CASE PASSED");
-            }
-            catch (Exception ex)
-            {
-                test.Fail(ex.Message);
-                Assert.Fail(ex.Message);
-            }
         }
     }
 }

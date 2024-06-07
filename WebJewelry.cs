@@ -24,20 +24,7 @@ namespace Capstone_Project
             urlList.Add("https://demowebshop.tricentis.com/jewelry");
             bool isContains = urlList.Any(x => x.Contains("Jewelry"));
         }
-        public static void TC_3_SelectCategoryJewelry(IWebDriver driver, ExtentReports reports, ISikuliSession session, VirtualKeyCode key)
-        {
-            ExtentTest test = reports.CreateTest("TEST CASE: TC_3_SelectCategoryJewelry");
-            try
-            {
-                WebJewelry.SelectCategoryJewelry(driver);
-                test.Pass("TEST CASE PASSED");
-            }
-            catch (Exception ex)
-            {
-                test.Fail(ex.Message);
-                Assert.Fail(ex.Message);
-            }
-        }
+
         public static void ChangeDisplayView(IWebDriver driver)
         {
             //Select the Jewelry option under the Categories section
@@ -50,43 +37,35 @@ namespace Capstone_Project
             bool isContains = urlList.Any(x => x.Contains("Jewelry"));
 
             //Select the List option under the View as dropdown
+            //Products will be displayed underneath each other
+            driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]")).Click();
+            Thread.Sleep(500);
+            driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]/option[2]")).Click();
+
+            //Select the List option under the View as dropdown
             driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]")).Click();
             Thread.Sleep(500);
 
             //Products will be displayed underneath each other
             driver.FindElement(By.XPath("//*[@id=\"products-viewmode\"]/option[2]")).Click();
         }
-        public static void TC_4_ChangeDisplayView(IWebDriver driver, ExtentReports reports, ISikuliSession session)
-        {
-            ExtentTest test = reports.CreateTest("TEST CASE: TC_4_ChangeDisplayView");
-            try
-            {
-                WebJewelry.ChangeDisplayView(driver);
-                test.Pass("TEST CASE PASSED");
-            }
-            catch (Exception ex)
-            {
-                test.Fail(ex.Message);
-                Assert.Fail(ex.Message);
-            }
-        }
         public static void CreateYourOwnJewelry(IWebDriver driver, ISikuliSession session, WindowsInput.Native.VirtualKeyCode Key)
         {
-            //Click on the product Labled Create Your Own Jewelry image
+            // Click on the product Labled Create Your Own Jewelry image
             //Add product to the cart
 
-            string path0 = @"C:\Training\CapstoneProject\Capstone\Images\Create_Your_Own_Jewelry.png";
+            string path0 = @"C:\Training\CapstoneProject\Images\Create_Your_Own_Jewelry.png";
             IPattern pattern0 = Patterns.FromFile(path0);
             session.Click(pattern0);
 
             //Select the Gold (1mm) option from the Material dropdown
             //Material
-            string path1 = @"C:\Training\CapstoneProject\Capstone\Images\Material.png";
+            string path1 = @"C:\Training\CapstoneProject\Images\Material.png";
             IPattern pattern1 = Patterns.FromFile(path1);
             session.Click(pattern1);
 
             //Gold (1mm)
-            string path2 = @"C:\Training\CapstoneProject\Capstone\Images\Gold_(1mm).png";
+            string path2 = @"C:\Training\CapstoneProject\Images\Gold_(1mm).png";
             IPattern pattern2 = Patterns.FromFile(path2);
             session.Click(pattern2);
 
@@ -95,46 +74,29 @@ namespace Capstone_Project
             sim.Keyboard.KeyPress(Key);
 
             //Enter 30 into the Length in cm source field 
-            string path3 = @"C:\Training\CapstoneProject\Capstone\Images\Length_30cm.png";
+            string path3 = @"C:\Training\CapstoneProject\Images\Length_30cm.png";
             IPattern pattern3 = Patterns.FromFile(path3);
             session.Click(pattern3);
             session.Type("30");
+            sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
 
             //Select the Heart radio button option under Pendant
-            string path4 = @"C:\Training\CapstoneProject\Capstone\Images\Heart.png";
+            string path4 = @"C:\Training\CapstoneProject\Images\Heart.png";
             IPattern pattern4 = Patterns.FromFile(path4);
             session.Click(pattern4);
 
             //Increase Quantity to 2 
-            string path5 = @"C:\Training\CapstoneProject\Capstone\Images\Quantity_2.png";
+            string path5 = @"C:\Training\CapstoneProject\Images\Quantity_2.png";
             IPattern pattern5 = Patterns.FromFile(path5);
             session.Click(pattern5);
             sim.Keyboard.KeyPress(VirtualKeyCode.BACK);
             session.Type("2");
 
             //Click on the Add to cart button
-            string path6 = @"C:\Training\CapstoneProject\Capstone\Images\Add_to_cart.png";
+            string path6 = @"C:\Training\CapstoneProject\Images\Add_to_cart.png";
             IPattern pattern6 = Patterns.FromFile(path6);
             session.Click(pattern6);
         }
-        public static void TC_5_CreateYourOwnJewelry(IWebDriver driver, ExtentReports reports, ISikuliSession session, VirtualKeyCode key)
-        {
-            ExtentTest test = reports.CreateTest("TEST CASE: TC_5_CreateYourOwnJewelry");
-            try
-            {
-                WebJewelry.CreateYourOwnJewelry(driver, session, key);
-                test.Pass("TEST CASE PASSED");
-            }
-            catch (Exception ex)
-            {
-                test.Fail(ex.Message);
-                Assert.Fail(ex.Message);
-            }  
-        }
-
-        internal static void TC_4_ChangeDisplayView(IWebDriver driver, ExtentReports reports, ISikuliSession session, VirtualKeyCode key)
-        {
-            throw new NotImplementedException();
-        }
-    } 
+    }
 }
+
